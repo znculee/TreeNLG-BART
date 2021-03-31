@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cd $(dirname $0)/..
+cd $(dirname $0)/../..
 
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=$4
 TMPDIR=/tmp
 
 src=mr
@@ -10,11 +10,29 @@ tgt=ar
 data=weather
 model=bart_large
 
-savedir=checkpoints/$data.$model
+pct=pct-$1 # [01, 02, 05, 10, 20, 50, 1c]
+itr=itr$2  # [0,1,2,...]
+stg=$3     # [lbl, plbl]
+
+if [[ "$stg" == "lbl" ]]; then
+  datadir=$pct/shuf.lbl
+  if [[ "$2" == "0" ]]; then
+    echo "Please use train.weather.bart.sh to train the base model."
+    exit 1
+  else
+    savedir=self_training/checkpoints/$data/$datadir.constr.$itr.$model
+    restore=self_training/checkpoints/$data/$pct/shuf.plbl.constr.$itr.$model/checkpoint_best.pt
+  fi
+else
+  datadir=$pct/shuf.plbl.constr.$itr
+  savedir=self_training/checkpoints/$data/$datadir.$model
+  restore=cache/$model/model.pt
+fi
+
 mkdir -p $savedir
 
-fairseq-train data-prep/$data \
-  --restore-file cache/$model/model.pt \
+fairseq-train self_training/data-prep/$data/$datadir \
+  --restore-file $restore \
   --max-epoch 500 --patience 20 \
   --max-tokens 2048 \
   --task translation --arch $model \

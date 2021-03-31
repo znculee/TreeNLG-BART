@@ -19,7 +19,7 @@ fairseq-generate data-prep/$data \
   --gen-subset $testpfx.bpe \
   --path $savedir/checkpoint_best.pt \
   --dataset-impl raw \
-  --max-sentences 128 \
+  --max-tokens 2048 \
   --beam 5 \
   --max-len-a 2 --max-len-b 50 \
   > $savedir/$genpfx.txt
