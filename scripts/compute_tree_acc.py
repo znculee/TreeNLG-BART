@@ -35,8 +35,8 @@ def main(args):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Compute tree accuracy')
-    parser.add_argument('hyp', type=str, help='reference')
-    parser.add_argument('ref', type=str, help='hypothesis')
+    parser.add_argument('hyp', type=str, help='hypothesis')
+    parser.add_argument('ref', type=str, help='reference')
     parser.add_argument('--order-constr', action='store_true', help='activate order constraint')
     args = parser.parse_args()
     return args
