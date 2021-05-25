@@ -5,6 +5,11 @@ It inherit the code from [v0.1.0](https://github.com/znculee/TreeNLG/releases/ta
 
 ## Get Started
 
+```
+conda create -n bart python=3.7 pip
+conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
+```
+
 [fairseq](https://github.com/pytorch/fairseq) should be installed at the very beginning, referring to [Requirements and Installation of Fairseq](https://github.com/pytorch/fairseq#requirements-and-installation).
 The code has been tested on commit `e9014fb` of [fairseq](https://github.com/pytorch/fairseq).
 The pretrained BART models can be download [here](https://github.com/pytorch/fairseq/tree/master/examples/bart#pre-trained-models).
