@@ -1,7 +1,12 @@
 # TreeNLG-BART
 
+This repo contains code for reproducing the BART results in *Self-Training for Compositional Neural NLG in Task-Oriented Dialogue*.
 This repo applies constrained decoding to the large pretrained BART of [fairseq](https://github.com/pytorch/fairseq).
 It inherit the code from [v0.1.0](https://github.com/znculee/TreeNLG/releases/tag/v0.1.0) of [znculee/TreeNLG](https://github.com/znculee/TreeNLG).
+
+## Reference
+
+TBD
 
 ## Get Started
 
